@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% block title %}Rent a Ride | Home{% endblock %}
+
+{% block headings %} 
+<ul class="navbar-nav mr-auto">
+    <li class="nav-item active">
+      <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>  
+    </li>
+    <li class="nav-item ">
+      <a class="nav-link" href="/">About Us<span class="sr-only">(current)</span></a>
+    </li>
+</ul>
+{% endblock %}
+
+{% block button %}
+<form class="form-inline my-2 my-lg-0">
+    <a href="/register/" class="btn btn-primary mx-1 my-2 my-sm-0">Register</a>
+    <a href="/login/" class="btn btn-success mx-1 my-2 my-sm-0">Login</a>
+</form>
+{% endblock %}
+
+{% block body %}
+{% load static %}
+<section id="description" class="section ">
+    <div class="container ">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="section-content">
+                    <h2>Description</h2>
+                    <p>Introducing BikeShare - your go-to platform for renting bicycles among students. With BikeShare, you can easily rent a bike, making your daily commute convenient and eco-friendly. </p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <img src="{% static 'rentals/cycles.avif' %}" alt="BikeShare" class="img-fluid">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Advantages Section -->
+<section id="advantages" class="section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <img src="{% static 'rentals/bicycle.jpg' %}" alt="Advantages" class="img-fluid">
+            </div>
+            <div class="col-md-6">
+                <div class="section-content">
+                    <h2>Advantages</h2>
+                    <ul>
+                        <li>Cost-effective and affordable bicycle rentals.</li>
+                        <li>Environmentally friendly transportation option.</li>
+                        <li>Convenient pickup and drop-off locations.</li>
+                        <li>Exclusive discounts for students.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="container">
+    <h2>About Us</h2>
+    <hr>
+
+</div>
+{% endblock %}

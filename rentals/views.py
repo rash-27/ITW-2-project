@@ -60,19 +60,25 @@ def completeregister(request,user):
     if name :
         if request.method == 'POST':
             name = User.objects.get(username=user)
-            if CycleInfo.objects.filter(user = name).exists():
+            if CycleInfo.objects.filter(username = name).exists():
                 messages.info(request,'You have already created Your account . You can make changes after login')
                 return redirect('/login')
             cycle_desc = request.POST.get('cycle_desc')
             cycle_price = request.POST.get('cycle_price')
+            phone_no = request.POST.get('phone_no')
             cycle_image = request.FILES.get('cycle_image')
 
 
             CycleInfo.objects.create(
-                user = name,
+                username = name,
                 cycle_details = cycle_desc,
                 cycle_pricing = cycle_price,
-                cycle_img = cycle_image
+                cycle_img = cycle_image,
+                phone_no = phone_no
+            )
+            Coins.objects.create(
+                username = name,
+                coins = 100
             )
             
             messages.info(request,'You have successfully registered ! Login Now')
@@ -84,8 +90,25 @@ def completeregister(request,user):
             
 @login_required
 def userhome(request,user):
+    user1 = User.objects.get(username=user)
+    user2 = CycleInfo.objects.get(username=user1)
+    user3 = Coins.objects.get(username=user1)
 
-    return render(request,'userhome.html')
+    first_name = user1.first_name
+    last_name = user1.last_name
+    coins = user3.coins
+    cycle_desc = user2.cycle_details
+    cycle_price = user2.cycle_pricing
+    cycle_image = user2.cycle_img
+    phone_no = user2.phone_no
+    email = user1.email
+
+    context = {'first_name':first_name,'last_name':last_name,
+               'coins':coins, 'cycle_desc':cycle_desc ,'cycle_price':cycle_price
+               ,'cycle_image':cycle_image, 'phone_no':phone_no , 'email':email}
+
+
+    return render(request,'userhome.html',context)
     
 @login_required
 def logout_(request):

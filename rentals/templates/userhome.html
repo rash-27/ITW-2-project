@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}Rent a Ride | Home{% endblock %}
+
+{% block headings %} 
+<ul class="navbar-nav mr-auto">
+    <li class="nav-item active">
+      <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>  
+    </li>
+    <li class="nav-item ">
+      <a class="nav-link" href="/">About Us<span class="sr-only">(current)</span></a>
+    </li>
+</ul>
+{% endblock %}
+
+{% block button %}
+<form class="form-inline my-2 my-lg-0">
+    <a href="/logout" class="btn btn-danger mx-1 my-2 my-sm-0">Logout</a>
+</form>
+{% endblock %}

@@ -4,6 +4,6 @@
 
 
 {% block body %}
-<h1>OOps !!</h1>
-<h2>The page you have requested is not found</h2>
+{% load static %}
+<img src="{% static 'rentals/error.png' %}" style="height: 720px;width: 1530px;" alt="OOPS URL Not Found "/>
 {% endblock %}

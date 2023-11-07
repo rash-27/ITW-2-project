@@ -5,10 +5,10 @@
 {% block headings %} 
 <ul class="navbar-nav mr-auto">
     <li class="nav-item active">
-      <a class="nav-link" href="/">My Profile<span class="sr-only">(current)</span></a>  
+      <a class="nav-link" href="/{{username}}">My Profile<span class="sr-only">(current)</span></a>  
     </li>
     <li class="nav-item ">
-      <a class="nav-link" href="/">My Rides<span class="sr-only">(current)</span></a>  
+      <a class="nav-link" href="/{{username}}/Transactions">My Rides<span class="sr-only">(current)</span></a>  
     </li>
 </ul>
 {% endblock %}
@@ -21,6 +21,7 @@
 {% endblock %}
 {% block button %}
 <form class="form-inline my-2 my-lg-0">
+    <a href="/{{username}}/Rent-a-ride" class="btn btn-success mx-1 my-2 my-sm-0">Accept requests here</a>
     <a href="/{{username}}/Rent-a-ride" class="btn btn-danger mx-1 my-2 my-sm-0">Back</a>
 </form>
 {% endblock %}
@@ -67,9 +68,13 @@
   </section>
 {% else %}
         {% if y %}
-        <h1>No one contacted You</h1>
+
+        <img src="{%static 'rentals/norequest.png'%}" style="height: 720px;width: 1530px;"/>
+        
         {% else %}
-        <h1>You have not sent a request</h1>
+
+        <img src="{%static 'rentals/registernow.png'%}" style="height: 720px;width: 1530px;"/>
+
         {% endif %}
 {% endif %}
 

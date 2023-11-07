@@ -16,8 +16,6 @@ urlpatterns = [
     path('<user>/Rent-a-ride/status',views.bookingstatusgive,name='renting Status Take'),
     path('<user>/Book-a-ride/accept/<username>/',views.bookingaccept,name='Accepting Status'),
     path('<user>/Book-a-ride/accept/<username>/review',views.review,name='Review'),
-    path('<user>/Book-a-ride/accept/<username>/confirm',views.confirm,name='Confirm'),
-    path('*',views.error,name='error')
-
+    path('<user>/Book-a-ride/accept/<username>/confirm',views.confirm,name='Confirm')
 ]
 

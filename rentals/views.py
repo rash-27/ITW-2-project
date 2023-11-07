@@ -102,7 +102,7 @@ def userhome(request,user):
     cycle_price = user2.cycle_pricing
     cycle_image = user2.cycle_img
     phone_no = user2.phone_no
-    rating = user2.rating
+    rating = format(user2.rating,'1f')
     email = username.email
 
     context = {'first_name':first_name,'last_name':last_name,'username':user,
@@ -116,6 +116,7 @@ def userhome(request,user):
 def logout_(request):
     logout(request)
     return redirect('/login/')
+
 
 @login_required
 def bookaride(request,user):
@@ -169,7 +170,7 @@ def rentaride(request,user):
 
 
 
-
+@login_required
 def bookingstatustake(request,user):
     name = User.objects.get(username=user)
     uniq = Booking.objects.filter(username=name)
@@ -191,7 +192,7 @@ def bookingstatustake(request,user):
         context['uniq']=uniq[0].uniq
     return render(request,'bookingstatustake.html',context)
 
-
+@login_required
 def bookingstatusgive(request,user):
     x = MutualInfo.objects.filter(username2=user)
     y1 = User.objects.get(username = user)
@@ -216,6 +217,7 @@ def bookingstatusgive(request,user):
         return redirect('/'+user)
     return render(request,'bookingstatusgive.html',context)
 
+@login_required
 def bookingaccept(request,user,username):
     name = User.objects.get(username=user)
     uniq = Booking.objects.filter(username=name)
@@ -258,7 +260,7 @@ def bookingaccept(request,user,username):
     return render(request,'mutualtake.html',context)
     
 
-
+@login_required
 def review(request,user,username):
     if request.method == 'POST':
         rating = int(request.POST.get('rating'))
@@ -275,15 +277,15 @@ def review(request,user,username):
         x = MutualInfo.objects.filter(username1=user)
         uniq = x[0].uniq
         y = Transactions.objects.filter(uniq=uniq)[0]
-        y.rating=rating
-        y.price=int(price)
+        y.rating=int(rating)
+        y.cost=int(price)
         y.save()
         z = Transactions.objects.filter(username2=username)
         var = 0
         for i in z :
             var+=int(i.rating)
         var /= z.count()
-        t = CycleInfo.objects.filter(username=name1)[0]
+        t = CycleInfo.objects.filter(username=name2)[0]
         t.rating = var
         t.save()
         messages.info(request,'You Transaction and Payment is successful')
@@ -294,12 +296,14 @@ def review(request,user,username):
 
     return render(request,'review.html',context)
 
+
+@login_required
 def seeTransactions(request,user):
     transac = Transactions.objects.filter(username1= user)
     context = {'username':user,'transactions':transac}
     return render(request,'transactions.html',context)
 
-
+@login_required
 def confirm(request,user,username):
     uniq = MutualInfo.objects.filter(username1=user)[0]
     uniq.taken = True
@@ -308,7 +312,7 @@ def confirm(request,user,username):
 
     return redirect('/'+user+'/Book-a-ride/accept/'+username)
 
-
+@login_required
 def update(request,user):
     context = {'username':user}
     if request.method == 'POST':
@@ -328,5 +332,7 @@ def update(request,user):
     return render(request,'userupdate.html',context)
 
 
-def error(request):
-    return render(request,'error.html')
+def custom_404(request,exception):
+    return render(request,'error.html',status=404 or 500)
+
+

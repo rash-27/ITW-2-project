@@ -1,0 +1,152 @@
+{% extends 'base.html' %}
+
+{% block title %}Rent a Ride | Home{% endblock %}
+
+{% block headings %} 
+<ul class="navbar-nav mr-auto">
+    <li class="nav-item active">
+      <a class="nav-link" href="/">My Profile<span class="sr-only">(current)</span></a>  
+    </li>
+    <li class="nav-item ">
+      <a class="nav-link" href="/">My Rides<span class="sr-only">(current)</span></a>  
+    </li>
+</ul>
+
+{% endblock %}
+{% block styles%}
+<style>
+.blockquote-custom {
+    position: relative;
+    font-size: 1.1rem;
+  }
+  
+  .blockquote-custom-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: -25px;
+    left: 50px;
+  }
+  
+  
+
+  body {
+    background: #eff0eb;
+    background-image: url('https://i.postimg.cc/MTbfnkj6/bg.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+  </style>
+{% endblock %}
+{% block button %}
+<form class="form-inline my-2 my-lg-0">
+    <a href="/{{username}}/Book-a-ride/status" class="btn btn-danger mx-1 my-2 my-sm-0">Back</a>
+</form>
+{% endblock %}
+
+{% block body %}
+
+<section class="py-5">
+    <div class="container">
+        <!-- FOR DEMO PURPOSE -->
+        <div class="row">
+            <div class="col-lg-6 mx-auto">
+                <header class="text-center pb-5">
+                    <h1 class="h2">Congrats</h1>
+                    <p>Your Ride is confirmed <br>The details of owner are mentined Below.</p>
+                    {% if messages %}
+                    {% for message in messages %}
+                    <div class="alert alert-success" role="alert">
+                     {{message}}
+                      </div>
+                    {% endfor %}
+                    {%endif%}
+                </header>
+            </div>
+        </div><!-- END -->
+
+
+        <!-- <div class="row">
+            <div class="col-lg-6 mx-auto">
+
+               
+                <blockquote class="blockquote blockquote-custom bg-white p-5 shadow rounded">
+                    <div class="blockquote-custom-icon bg-info shadow-sm"><i class="fa fa-quote-left text-white"></i></div>
+                    <div class="row featurette">
+                        <div class="col-md-7 order-md-2">
+                          <h5 class="featurette-heading"> Cycle Description</h5>
+                          <p >{{cycle_desc}}</p>
+                          <h5 class="featurette-heading"> Price Description</h5>
+                          <p >{{cycle_pricing}}</p>
+                        </div>
+                        <div class="col-md-5 order-md-1">
+                            <img src="../media/{{cycle_image}}" alt="Image Description" class="img-fluid mx-auto" width="500" height="500">
+                        </div>
+                        
+                    </div>
+                </blockquote>
+
+            </div>
+        </div> -->
+        <div class="row mb-2">
+            <div class="col-lg-6 mx-auto">
+
+               
+                <blockquote class="blockquote blockquote-custom bg-white p-5 shadow rounded">
+                    <div class="blockquote-custom-icon bg-info shadow-sm"><i class="fa fa-quote-left text-white"></i></div>
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <p class="lead fw-normal mb-0"><b>Contact Info</b></p>
+                    </div>
+                      <hr>
+                      <h5 class="featurette-heading">Username : <small>{{username1}}</small></h5>
+                      <br>
+                      <h5 class="featurette-heading">Phone No : <small>{{phone_no}}</small></h5>
+                      <br>
+                      <h5 class="featurette-heading">Email Id : <small>{{email}}</small></h5>
+                      <br>
+                      <h5 class="featurette-heading">Rating : <small>{{rating}}</small></h5>
+                      <br>
+                      <a href="/{{username}}/Book-a-ride/accept/{{username1}}/confirm" class="btn btn-primary ">Press This Once the cycle is given</a>
+                      <a href="/{{username}}/Book-a-ride/accept/{{username1}}/review" class="btn btn-primary" >Rate the user</a>
+                </blockquote>
+
+            </div>
+            <div class="col-lg-6 mx-auto">
+
+                <blockquote class="blockquote blockquote-custom bg-white p-5 shadow rounded">
+                    <div class="blockquote-custom-icon bg-info shadow-sm"><i class="fa fa-quote-left text-white"></i></div>
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <p class="lead fw-normal mb-0"><b>Cycle Info</b></p>
+                      </div>
+                      <hr>
+                    <div class="row featurette">
+                        <div class="col-md-7 order-md-2">
+                          <h5 class="featurette-heading"> Cycle Description</h5>
+                          <p >{{cycle_desc}}</p>
+                          <h5 class="featurette-heading"> Price Description</h5>
+                          <p >{{cycle_pricing}}</p>
+                        </div>
+                        <div class="col-md-5 order-md-1">
+                            <img src="/media/{{cycle_image}}" alt="Image Description" class="img-fluid mx-auto" width="500" height="500">
+                        
+                        </div>
+                    </div>
+                    </div>
+                    
+                </blockquote>
+                
+            </div>
+
+
+    </div>
+
+
+
+    
+</section>
+
+{% endblock %}

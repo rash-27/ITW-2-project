@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+
+{% block title %}Update Page{% endblock %}
+
+{% block headings %} 
+<ul class="navbar-nav mr-auto">
+    <li class="nav-item active">
+      <a class="nav-link" href="/{{username}}">My Profile <span class="sr-only">(current)</span></a>  
+    </li>
+    <li class="nav-item ">
+      <a class="nav-link" href="/{{username}}/Transactions">My Rides<span class="sr-only">(current)</span></a>
+    </li>
+</ul>
+{% endblock %}
+
+
+{% block button %}
+<form class="form-inline my-2 my-lg-0">
+    <a href="/{{username}}" class="btn btn-primary mx-1 my-2 my-sm-0">Back</a>
+{% endblock %}
+
+{% block body %}
+<!-- Section: Design Block -->
+<section >
+    <!-- Background image -->
+    <div class="p-5 bg-image" style="
+          background-image: url('https://mdbootstrap.com/img/new/textures/full/171.jpg');
+          height: 300px;
+          "></div>
+    <!-- Background image -->
+  
+    <div class="card mx-4 mx-md-5 shadow-5-strong" style="
+          margin-top: -100px;
+          background: hsla(0, 0%, 100%, 0.8);
+          backdrop-filter: blur(30px);
+          ">
+      <div class="card-body py-5 px-md-5">
+  
+        <div class="row d-flex justify-content-center">
+          <div class="col-lg-8">
+            <h2 class="fw-bold mb-5 text-center">Fill the further details</h2>
+
+            <hr>
+            {% if messages %}
+            {% for message in messages %}
+
+            <div class="alert alert-success" role="alert">
+            {{user}} {{message}}
+              </div>
+
+            {% endfor %}
+            {% else %}
+            <div class="alert alert-primary" role="alert">
+               Now You can fill Your updated details here 
+                  </div>
+            {% endif %}
+
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+  
+              <!-- Email input -->
+
+
+              <div class="form-outline mb-4">
+                <label class="form-label" for="form3Example3">Cycle Information</label>
+                <textarea type="text" id="form3Example3" class="form-control" name="cycle_desc" placeholder="Enter the details of the cycle"></textarea>
+              </div>
+  
+              <!-- Password input -->
+              <div class="form-outline mb-4">
+                <label class="form-label" for="form3Example4">Pricing Details</label>
+                <textarea type="text" id="form3Example4" class="form-control" name="cycle_price" placeholder="Enter the pricing details of your cycle like price/hour"></textarea>    
+              </div>
+
+              <div class="form-outline mb-4">
+                <label class="form-label" for="form3Example4">Phone Number</label>
+                <input type="text" id="form3Example4" class="form-control" name="phone_no" placeholder="Enter Your Phone no" />    
+              </div>
+
+
+                <div class="form-group">
+                  <label for="exampleFormControlFile1">Upload Your Bicycle recent image</label>
+                  <input type="file" class="form-control-file" id="exampleFormControlFile1" name='cycle_image'>
+                </div>
+              
+  
+              <!-- Submit button -->
+              <button type="submit" class="btn btn-primary btn-block mb-4">
+                Complete Update
+              </button>
+             
+              
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Section: Design Block -->
+{% endblock %}

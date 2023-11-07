@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+
+{% block title %}Rent a Ride | Home{% endblock %}
+
+{% block headings %} 
+<ul class="navbar-nav mr-auto">
+    <li class="nav-item active">
+      <a class="nav-link" href="/">My Profile<span class="sr-only">(current)</span></a>  
+    </li>
+    <li class="nav-item ">
+      <a class="nav-link" href="/">My Rides<span class="sr-only">(current)</span></a>  
+    </li>
+</ul>
+{% endblock %}
+
+{% block button %}
+<form class="form-inline my-2 my-lg-0">
+    <a href="/{{username}}" class="btn btn-danger mx-1 my-2 my-sm-0">Back</a>
+</form>
+{% endblock %}
+
+{% block body %}
+<form method="post" class="container my-4">
+    {% csrf_token %}
+    <h2>Fill your Ride Details</h2>
+    <hr>
+    {% if messages %}
+            {% for message in messages %}
+
+            <div class="alert alert-primary" role="alert">
+            {{message}}
+              </div>
+
+            {% endfor %}
+            {% endif %}
+<div class="row">
+    <div class="col-md-6 mb-4">
+      <div class="form-outline">
+        <label class="form-label" for="form3Example1">From Time</label>
+        <input type="datetime-local" id="form3Example1" class="form-control" name="from_time" placeholder="From Time" required/>
+        
+      </div>
+    </div>
+    <div class="col-md-6 mb-4">
+      <div class="form-outline">
+        <label class="form-label" for="form3Example2">To Time</label>
+        <input type="datetime-local" id="form3Example2" class="form-control" name="to_time" placeholder="To time" required/>
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="form-outline mb-4">
+    <label class="form-label" for="form3Example4">Address of Collection</label>
+    <textarea type="text" id="form3Example4" class="form-control" name="address" placeholder="Enter the address where you want to collect Cycle"></textarea>    
+  </div>
+
+  <button type="submit" class="btn btn-success">Book a Ride</button>
+  <a href="/{{username}}/Book-a-ride/status" class="btn btn-primary">See your booking status</a>
+</form>
+
+
+
+
+
+
+
+
+{% block js %}
+<script>
+// Define the target time (e.g., a Unix timestamp in milliseconds)
+const targetTime = {from_time}.getTime(); // Change to your target time
+
+// Check the time periodically (every second in this example)
+const interval = setInterval(function() {
+    const currentTime = new Date().getTime();
+
+    // Check if the current time exceeds the target time
+    if (currentTime > targetTime) {
+        // Change the URL when the condition is met
+        window.location.href = '/new-url/';
+        
+        // Stop the interval to prevent further checks
+        clearInterval(interval);
+    }
+}, 1000*60); // Check every second
+
+
+</script>
+{% endblock %}
+
+{% endblock %}

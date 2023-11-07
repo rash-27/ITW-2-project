@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block title %}Rent a Ride | Home{% endblock %}
+
+{% block headings %} 
+<ul class="navbar-nav mr-auto">
+    <li class="nav-item active">
+      <a class="nav-link" href="/">My Profile<span class="sr-only">(current)</span></a>  
+    </li>
+    <li class="nav-item ">
+      <a class="nav-link" href="/">My Rides<span class="sr-only">(current)</span></a>  
+    </li>
+</ul>
+{% endblock %}
+
+{% block button %}
+<form class="form-inline my-2 my-lg-0">
+    <a href="/{{username}}/Rent-a-ride/status" class="btn btn-primary mx-1 my-2 my-sm-0">Accepting Status</a>
+    <a href="/{{username}}" class="btn btn-danger mx-1 my-2 my-sm-0">Back</a>
+</form>
+{% endblock %}
+{% block body %}
+
+
+<div class="container">
+    {% for i in info %}
+
+
+    <div class="card my-2" style="border: 1px solid black;">
+        <h5 class="card-header"style="border: 1px solid black;"  >{{i.username}}  (trxn.id = {{i.uniq}}) </h5>
+        <div class="card-body" style="border: 1px solid black;">
+            {% for message in messages %}
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                 {{message}}
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+            {% endfor %}
+          <h5 class="card-title" name="add" >{{i.address_at}}</h5>
+          <p class="card-text">From time : {{i.from_time}}</p>
+          <p class="card-text">To time : {{i.to_time}}</p>
+          <!-- <a href="{{i.uniq}}/" class="btn btn-primary">Accept Ride</a> -->
+                    <form method="post">
+                        {% csrf_token %}
+                    <button type="submit" name='submit' value={{i.uniq}} class="btn btn-primary"  data-toggle="collapse" aria-expanded="false" aria-controls="collapseExample">
+                        Accept Ride
+                    </button>
+                    
+                    </form>
+        </div>
+      </div>
+
+    {% endfor %}
+</div>
+
+
+{% endblock %}

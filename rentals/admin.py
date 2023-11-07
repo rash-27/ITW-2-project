@@ -4,3 +4,7 @@ from .models import *
 
 admin.site.register(CycleInfo)
 admin.site.register(Coins)
+admin.site.register(Booking)
+admin.site.register(Giving)
+admin.site.register(Transactions)
+admin.site.register(MutualInfo)

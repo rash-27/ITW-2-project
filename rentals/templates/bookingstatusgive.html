@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+
+{% block title %}Rent a Ride | Home{% endblock %}
+
+{% block headings %} 
+<ul class="navbar-nav mr-auto">
+    <li class="nav-item active">
+      <a class="nav-link" href="/">My Profile<span class="sr-only">(current)</span></a>  
+    </li>
+    <li class="nav-item ">
+      <a class="nav-link" href="/">My Rides<span class="sr-only">(current)</span></a>  
+    </li>
+</ul>
+{% endblock %}
+{% block styles %}
+<style>
+    .body{
+        background-color: white;
+    }
+</style>
+{% endblock %}
+{% block button %}
+<form class="form-inline my-2 my-lg-0">
+    <a href="/{{username}}/Rent-a-ride" class="btn btn-danger mx-1 my-2 my-sm-0">Back</a>
+</form>
+{% endblock %}
+
+{% block body %}
+
+{% load static %}
+{% if info %}
+<section class="vh-100" style="background-color: white;">
+    <div class="container py-5 h-100">
+      <div class="row d-flex align-items-center justify-content-center h-100">
+        <div class="col-md-8 col-lg-7 col-xl-6">
+          <img src="{% static 'rentals/img1.jpg' %}"
+            class="img-fluid" alt="Success Image">
+        </div>
+        <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
+          <form method="post">
+            {% csrf_token %}
+            <h1>Congrats !!</h1>
+            <h4>Your Cycle got Booked by a user</h4>
+            <hr>
+            
+            <!-- Email input -->
+
+            <div class="container">
+                <h4>Customer Details</h4>
+                <hr>
+                <h5>Username : {{user}}</h5>
+                <h5>First Name : {{first_name}}</h5>
+                <h5>Last Name : {{last_name}}</h5>
+                <h5>Phone No : {{phone_no.phone_no}}</h5>
+                <h5>Email Id : {{email}}</h5>
+                <br><br>
+                <button type="submit" class="btn btn-primary">Accept this once the cycle is given back.</button>
+            </div>
+  
+        
+  
+  
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+{% else %}
+        {% if y %}
+        <h1>No one contacted You</h1>
+        {% else %}
+        <h1>You have not sent a request</h1>
+        {% endif %}
+{% endif %}
+
+
+{% endblock %}
+
+

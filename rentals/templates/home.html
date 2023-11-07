@@ -12,7 +12,44 @@
     </li>
 </ul>
 {% endblock %}
+{% block styles %}
+<style>
+    /* Your CSS code goes here */
+    * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+    }
 
+    .waviy {
+        background-color: #156;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 50vh;
+    }
+
+    .waviy {
+        position: relative;
+    }
+
+    .waviy span {
+        position: relative;
+        display: inline-block;
+        font-size: 140px;
+        color: #ffebe1;
+        font-family: "Brush Script MT", cursive;
+        animation: flip 2s infinite;
+        animation-delay: calc(.2s * var(--i));
+    }
+
+    @keyframes flip {
+        0%, 80% {
+            transform: rotateY(360deg);
+        }
+    }
+</style>
+{% endblock %}
 {% block button %}
 <form class="form-inline my-2 my-lg-0">
     <a href="/register/" class="btn btn-primary mx-1 my-2 my-sm-0">Register</a>
@@ -22,6 +59,16 @@
 
 {% block body %}
 {% load static %}
+
+<div class="waviy">
+    <span style="--i: 1;">Rent</span>
+    <span style="--i: 2;">-A-</span>
+    <span style="--i: 3;">Ride </span>
+    
+</div>
+
+
+
 <section id="description" class="section ">
     <div class="container ">
         <div class="row">

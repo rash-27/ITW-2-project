@@ -1,0 +1,9 @@
+
+
+
+if uniq:
+            messages.info(request,'You Ride requirement has been noted , You can view see who have acceptes your request in "See Your Booking section')
+            context = {'username':user}
+            return render('/'+user+'/Book-a-ride',context)
+
+

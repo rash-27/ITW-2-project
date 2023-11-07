@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+
+{% block title %}Rent a Ride | Home{% endblock %}
+
+{% block headings %} 
+<ul class="navbar-nav mr-auto">
+    <li class="nav-item active">
+      <a class="nav-link" href="/">My Profile<span class="sr-only">(current)</span></a>  
+    </li>
+    <li class="nav-item ">
+      <a class="nav-link" href="/">My Rides<span class="sr-only">(current)</span></a>  
+    </li>
+</ul>
+{% endblock %}
+
+{% block button %}
+{% if not uniq and not y %}
+<form class="form-inline my-2 my-lg-0">
+    <a href="/{{username}}/Book-a-ride" class="btn btn-success mx-1 my-2 my-sm-0">Request Here</a>
+</form>
+{% endif %}
+<form class="form-inline my-2 my-lg-0">
+    <a href="/{{username}}/Book-a-ride" class="btn btn-danger mx-1 my-2 my-sm-0">Back</a>
+</form>
+{% endblock %}
+
+{% block styles %}
+{% load static %}
+
+{% endblock %}
+
+
+
+{% block body %}
+{% if uniq %}
+
+    
+    {% if it %}
+    <div class="container">
+    <h2 class="my-3">Users Accepted Your Request</h2>
+    <hr>
+    {% for i in it %}
+    {% for j in bt %}
+    {% if i.username == j.username %}
+
+    <div class="row featurette my-3" style="border: 1px solid black; padding-bottom: 10px;padding-top: 10px;border-radius: 10px;">
+        <div class="col-md-7 order-md-2">
+          <h5 class="featurette-heading"> {{j.username}}</h5>
+          <h5 class="featurette-heading"> Cycle Description</h5>
+          <p >{{j.cycle_details}}</p>
+          <h5 class="featurette-heading"> Price Description</h5>
+          <p >{{j.cycle_pricing}}</p>
+    <div class="text-right">
+        <form   method="post">
+            {% csrf_token %}
+            <a href="/{{username}}/Book-a-ride/accept/{{j.username}}" class="btn btn-success m1-auto">Accept Ride</a>
+        </form>
+        </div>    
+        </div>
+        <div class="col-md-5 order-md-1">
+            <img src="../../media/{{j.cycle_img}}" alt="Image Description" class="img-fluid mx-auto" width="500" height="500">
+        </div>
+        </div>
+      <hr>
+       </div> 
+    {% endif %}
+    {% endfor %} 
+    {% endfor %}
+            {% else %}
+    <!-- When no one accepted Your request -->
+    
+         <img src="{%static 'rentals/norequest.png'%}" style="height: 720px;width: 1530px;"/>
+              
+    
+
+
+    {% endif %}
+
+    
+
+            {% else %}
+    <!-- when you not created a request -->
+    
+    <img src="{%static 'rentals/registernow.png'%}" style="height: 720px;width: 1530px;"/>
+
+
+        
+{% endif %}
+
+{% endblock %}
+
+

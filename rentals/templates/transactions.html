@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block title %}Rent a Ride | Home{% endblock %}
+
+{% block headings %} 
+<ul class="navbar-nav mr-auto">
+    <li class="nav-item active">
+      <a class="nav-link" href="/">My Profile<span class="sr-only">(current)</span></a>  
+    </li>
+    <li class="nav-item ">
+      <a class="nav-link" href="/">My Rides<span class="sr-only">(current)</span></a>  
+    </li>
+</ul>
+{% endblock %}
+
+{% block button %}
+<form class="form-inline my-2 my-lg-0">
+    <a href="/{{username}}" class="btn btn-danger mx-1 my-2 my-sm-0">Back To home</a>
+</form>
+
+{% endblock %}
+
+{% block body %}
+<table class="table my-3 container">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Sno</th>
+        <th scope="col">Taken By</th>
+        <th scope="col">Given By</th>
+        <th scope="col">From time</th>
+        <th scope="col">To time</th>
+        <th scope="col">Price</th>
+        <th scope="col">Rating</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for i in transactions %}
+      <tr>
+        <th scope="row">1</th>
+        <td>{{i.username1}}</td>
+        <td>{{i.username2}}</td>
+        <td>{{i.from_time}}</td>
+        <td>{{i.to_time}}</td>
+        <td>{{i.price}}</td>
+        <td>{{i.rating}}</td>
+
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  
+
+{% endblock %}

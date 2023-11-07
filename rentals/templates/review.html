@@ -1,0 +1,164 @@
+{% extends 'base.html' %}
+
+{% block title %}Rent a Ride | Home{% endblock %}
+
+{% block headings %} 
+<ul class="navbar-nav mr-auto">
+    <li class="nav-item active">
+      <a class="nav-link" href="/">My Profile<span class="sr-only">(current)</span></a>  
+    </li>
+    <li class="nav-item ">
+      <a class="nav-link" href="/">My Rides<span class="sr-only">(current)</span></a>  
+    </li>
+</ul>
+{% endblock %}
+
+{% block styles %}
+<style>
+
+body{
+  background-color: #eee;
+}
+
+div.stars {
+
+  width: 270px;
+
+  display: inline-block;
+
+}
+
+ .mt-200{
+     margin-top:200px;  
+ }
+
+input.star { display: none; }
+
+ 
+
+label.star {
+
+  float: right;
+
+  padding: 10px;
+
+  font-size: 36px;
+
+  color: #4A148C;
+
+  transition: all .2s;
+
+}
+
+ 
+
+input.star:checked ~ label.star:before {
+
+  content: '\f005';
+
+  color: #FD4;
+
+  transition: all .25s;
+
+}
+
+ 
+input.star-5:checked ~ label.star:before {
+
+  color: #FE7;
+
+  text-shadow: 0 0 20px #952;
+
+}
+
+ 
+
+input.star-1:checked ~ label.star:before { color: #F62; }
+
+    
+
+label.star:hover { transform: rotate(-15deg) scale(1.3); }
+
+ 
+
+label.star:before {
+
+  content: '\f006';
+
+  font-family: FontAwesome;
+
+}
+</style>
+{% endblock %}
+{% block button %}
+<form class="form-inline my-2 my-lg-0">
+    <a href="/{{username}}/Book-a-ride/accept/{{username1}}" class="btn btn-danger mx-1 my-2 my-sm-0">Back </a>
+    <a href="/{{username}}" class="btn btn-danger mx-1 my-2 my-sm-0">Back To home</a>
+</form>
+{% endblock %}
+
+{% block body %}
+                        
+<div class="container d-flex justify-content-center mt-200">
+	
+
+    <div class="row">
+    
+        <div class="col-md-12">
+    
+            <div class="stars">
+    
+      <form method="post">
+        {% csrf_token %}
+            {% if messages %}
+            {% for message in messages %}
+            <div class="alert alert-success" style="text-align: center;" role="alert">
+                {{message}}
+              </div>
+            {% endfor %}
+            {% endif %}
+            <h2 style="text-align: center;">Give Your Rating </h2>
+            <hr>
+        <input class="star star-5" value=5 id="star-5" type="radio" name="rating"/>
+    
+        <label class="star star-5" for="star-5"></label>
+    
+        <input class="star star-4" value=4 id="star-4" type="radio" name="rating"/>
+    
+        <label class="star star-4" for="star-4"></label>
+    
+        <input class="star star-3" value=3 id="star-3" type="radio" name="ranting"/>
+    
+        <label class="star star-3" for="star-3"></label>
+    
+        <input class="star star-2" value=2 id="star-2" type="radio" name="rating"/>
+    
+        <label class="star star-2" for="star-2"></label>
+    
+        <input class="star star-1" value=1 id="star-1" type="radio" name="rating"/>
+    
+        <label class="star star-1" for="star-1"></label>
+        <h2 style="text-align: center;">Payment Here</h2>
+        <hr>
+        <div class="form-outline mb-4">
+            <label class="form-label" for="form1Example23">Enter the price of the ride</label>
+          <input type="number" id="form1Example23" class="form-control form-control-lg" name="price" placeholder="Price" required/>
+          <button type="submit" class="btn btn-success my-3">Proceed</button>
+          
+        </div>
+      </form>
+    
+    </div>
+    
+    
+            
+        </div>
+        
+    
+    </div>
+    
+    </div>
+            
+{% endblock %}
+
+

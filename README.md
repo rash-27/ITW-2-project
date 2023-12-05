@@ -29,3 +29,13 @@
 
 4.After the borrower meets and picks up the cycle he can confirm it and then he can rate the cycle and make the payment.
 
+<h2>To run this project in your System in Windows </h2>
+<ul>
+  <li>Clone this project into your system using $git clone https://github.com/rash-27/ITW-2_Group-46_22075052.git (or) Download the Zip file of the project </li>
+  <li>Open the directory where you have downloaded / Cloned the project , create a virtual environment using $python -m venv env (Should have python installed in your device). </li>
+  <li>Activate the virtual environment $env\Scripts\activate</li>
+  <li>Now install requirements.txt $pip install -r requirements.txt </li>
+  <li>Now go to the directory in which manage.py is present and to run server $python manage.py runserver </li>
+  <li>Now project will be hosted locally in your system </li>
+</ul>
+<h3>Feel free to raise issues and solve them , i'll merge them into my code .</h3>
